@@ -2,6 +2,7 @@ import requests
 import time
 
 if __name__ == '__main__':
+    # создание задачи
     response = requests.post('http://127.0.0.1:5000/sums/my_data.csv/')
     print(response.status_code)
     print(response.text)
@@ -10,6 +11,7 @@ if __name__ == '__main__':
 
     result = 'None'
 
+    # дожидаемся выполнения задачи
     while result == 'None':
 
         time.sleep(0.5)
@@ -19,3 +21,9 @@ if __name__ == '__main__':
         print(response.json())
 
         result = response.json()['result']
+
+    # получение количества задач
+    response = requests.get('http://127.0.0.1:5000/count/')
+    print()
+    print(response.status_code)
+    print(response.text)
